@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ext.aks4125.githubapicompose.network.UsersApi
+import ext.aks4125.githubapicompose.network.UserApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -41,8 +41,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): UsersApi =
-        retrofit.create(UsersApi::class.java)
+    fun provideApiService(retrofit: Retrofit): UserApi =
+        retrofit.create(UserApi::class.java)
 
     private const val END_POINT = "https://api.github.com/"
 }

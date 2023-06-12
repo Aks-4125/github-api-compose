@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
+import ext.aks4125.githubapicompose.ui.components.ScaffoldWithTopBar
 import ext.aks4125.githubapicompose.ui.theme.GithubApiComposeTheme
 
 @AndroidEntryPoint
@@ -18,7 +19,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            GithubApp()
+            GithubApp(finish = { finish() })
         }
     }
 }
