@@ -5,7 +5,6 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class UserApiModel(
-
     @field:Json(name = "login") var userId: String,
     @field:Json(name = "id") var id: Int,
     @field:Json(name = "node_id") var nodeId: String? = null,

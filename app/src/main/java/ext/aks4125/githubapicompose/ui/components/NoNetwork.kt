@@ -15,9 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import ext.aks4125.githubapicompose.R
+import ext.aks4125.githubapicompose.util.Dimens.dimen_100
+import ext.aks4125.githubapicompose.util.Dimens.dimen_16
+import ext.aks4125.githubapicompose.util.Dimens.dimen_32
 
+/**
+ * An 8dp grid system. Smaller components can align to a 2dp 'sub' grid.
+ */
 
 @Composable
 fun NoNetwork() {
@@ -26,7 +31,7 @@ fun NoNetwork() {
             .testTag("networkView")
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.background)
-            .padding(horizontal = 32.dp),
+            .padding(horizontal = dimen_32),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -34,8 +39,8 @@ fun NoNetwork() {
         ) {
             Icon(
                 modifier = Modifier
-                    .size(100.dp)
-                    .padding(bottom = 16.dp),
+                    .size(dimen_100)
+                    .padding(bottom = dimen_16),
                 painter = painterResource(R.drawable.search_no_result),
                 tint = MaterialTheme.colorScheme.primary,
                 contentDescription = null

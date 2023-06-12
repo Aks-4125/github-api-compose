@@ -39,7 +39,6 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -48,6 +47,13 @@ import ext.aks4125.githubapicompose.R
 import ext.aks4125.githubapicompose.network.model.UserApiModel
 import ext.aks4125.githubapicompose.ui.components.NoNetwork
 import ext.aks4125.githubapicompose.ui.components.shimmerBrush
+import ext.aks4125.githubapicompose.util.Dimens.dimen_10
+import ext.aks4125.githubapicompose.util.Dimens.dimen_12
+import ext.aks4125.githubapicompose.util.Dimens.dimen_150
+import ext.aks4125.githubapicompose.util.Dimens.dimen_16
+import ext.aks4125.githubapicompose.util.Dimens.dimen_20
+import ext.aks4125.githubapicompose.util.Dimens.dimen_4
+import ext.aks4125.githubapicompose.util.Dimens.dimen_8
 
 @Composable
 internal fun UsersScreen(
@@ -65,7 +71,7 @@ internal fun UsersScreen(
     ) {
         SearchBarSample(viewModel)
 
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(dimen_4))
 
 //        viewModel.performSearch("JakeWharton")
 
@@ -73,8 +79,8 @@ internal fun UsersScreen(
             NoNetwork()
         } else {
             Card(
-                modifier = Modifier.padding(14.dp),
-                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier.padding(dimen_12),
+                shape = RoundedCornerShape(dimen_10),
                 colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.lightGrey))
             ) {
                 uiState.user?.let {
@@ -85,10 +91,10 @@ internal fun UsersScreen(
                         navController
                     )
                 }
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(dimen_10))
             }
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(dimen_10))
     }
 }
 
@@ -134,7 +140,7 @@ fun UserItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(5.dp),
+            .padding(dimen_4),
         verticalAlignment = Alignment.CenterVertically
     ) {
         AsyncImage(modifier = Modifier
@@ -144,31 +150,31 @@ fun UserItem(
                     targetValue = 1300f, showShimmer = showShimmer.value
                 )
             )
-            .width(150.dp)
-            .height(150.dp),
+            .width(dimen_150)
+            .height(dimen_150),
             model = item.avatarUrl,
             contentDescription = null,
             onSuccess = { showShimmer.value = false })
         Column {
             Text(
-                modifier = Modifier.padding(start = 16.dp),
+                modifier = Modifier.padding(start = dimen_16),
                 text = stringResource(id = R.string.username, item.userId),
                 color = MaterialTheme.colorScheme.onBackground
             )
             Text(
-                modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+                modifier = Modifier.padding(start = dimen_16, top = dimen_16),
                 text = stringResource(id = R.string.profileName, item.name.toString()),
                 color = MaterialTheme.colorScheme.onBackground
             )
             Text(
-                modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+                modifier = Modifier.padding(start = dimen_16, top = dimen_16),
                 text = item.bio.orEmpty(),
                 color = MaterialTheme.colorScheme.onBackground,
                 maxLines = 3
             )
         }
     }
-    Row(modifier = Modifier.padding(start = 16.dp, top = 8.dp)) {
+    Row(modifier = Modifier.padding(start = dimen_16, top = dimen_8)) {
         ClickableText(
             text = AnnotatedString(
                 stringResource(
@@ -185,7 +191,7 @@ fun UserItem(
         )
 
         ClickableText(
-            modifier = Modifier.padding(start = 20.dp),
+            modifier = Modifier.padding(start = dimen_20),
             text = AnnotatedString(
                 stringResource(
                     id = R.string.following, viewModel.formatNumber(item.following ?: 0)

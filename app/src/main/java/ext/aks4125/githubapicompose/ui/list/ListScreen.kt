@@ -31,7 +31,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
@@ -39,10 +38,13 @@ import ext.aks4125.githubapicompose.R
 import ext.aks4125.githubapicompose.network.model.UserApiModel
 import ext.aks4125.githubapicompose.ui.components.NoNetwork
 import ext.aks4125.githubapicompose.ui.components.shimmerBrush
+import ext.aks4125.githubapicompose.util.Dimens.dimen_0
+import ext.aks4125.githubapicompose.util.Dimens.dimen_10
+import ext.aks4125.githubapicompose.util.Dimens.dimen_100
+import ext.aks4125.githubapicompose.util.Dimens.dimen_16
 
 @Composable
 internal fun ListScreen(
-    navController: NavHostController,
     onUserClick: (String) -> Unit
 ) {
     val viewModel = hiltViewModel<ListViewModel>()
@@ -54,7 +56,7 @@ internal fun ListScreen(
         containerColor = Color.White,
         modifier = Modifier.statusBarsPadding()
     ) { innerPadding ->
-        Box(modifier = androidx.compose.ui.Modifier.padding(innerPadding)) {
+        Box(modifier = Modifier.padding(innerPadding)) {
 
             Column(
                 modifier = Modifier
@@ -81,7 +83,7 @@ internal fun ListScreen(
                     }
                 }
 
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(dimen_10))
             }
         }
     }
@@ -96,8 +98,8 @@ fun UserItem(
     onUserClick: (String) -> Unit
 ) {
     Card(
-        modifier = Modifier.padding(10.dp),
-        shape = RoundedCornerShape(10.dp),
+        modifier = Modifier.padding(dimen_10),
+        shape = RoundedCornerShape(dimen_10),
         colors = CardDefaults.cardColors(containerColor = colorResource(id = R.color.lightGrey))
     ) {
         Row(modifier = Modifier
@@ -105,30 +107,30 @@ fun UserItem(
             .clickable {
                 onUserClick(item.userId)
             }
-            .padding(0.dp),
+            .padding(dimen_0),
             verticalAlignment = Alignment.CenterVertically) {
-            AsyncImage(modifier = Modifier//Modifier.clip(RoundedCornerShape(topEnd = 8.dp , topStart = 8.dp))
+            AsyncImage(modifier = Modifier
                 .clip(RoundedCornerShape(20))
                 .background(
                     shimmerBrush(
                         targetValue = 1300f, showShimmer = showShimmer.value
                     )
                 )
-                .width(100.dp)
-                .heightIn(min = 100.dp)
-                .height(100.dp),
+                .width(dimen_100)
+                .heightIn(min = dimen_100)
+                .height(dimen_100),
                 model = item.avatarUrl,
                 contentDescription = null,
                 onSuccess = { showShimmer.value = false })
             Column {
                 Text(
-                    modifier = Modifier.padding(start = 16.dp),
+                    modifier = Modifier.padding(start = dimen_16),
                     text = item.userId,
                     color = MaterialTheme.colorScheme.onBackground
                 )
 
                 Text(
-                    modifier = Modifier.padding(start = 16.dp),
+                    modifier = Modifier.padding(start = dimen_16),
                     text = item.bio.orEmpty(),
                     color = MaterialTheme.colorScheme.onBackground
                 )

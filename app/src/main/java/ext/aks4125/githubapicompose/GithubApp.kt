@@ -25,7 +25,6 @@ fun GithubApp(
     // Get current back stack entry
     val backStackEntry by navController.currentBackStackEntryAsState()
 
-
     Scaffold(
         topBar = {
             ScaffoldWithTopBar(navController) { finish() }
@@ -49,7 +48,7 @@ fun GithubApp(
                     }
                 )
             ) {
-                ListScreen(navController) { userId ->
+                ListScreen() { userId ->
                     navController.navigate(Route.ENTRY_USER + "/$userId")
                 }
             }

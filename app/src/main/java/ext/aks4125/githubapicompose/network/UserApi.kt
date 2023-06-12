@@ -13,5 +13,4 @@ interface UserApi {
         @Path("id") id: String,
         @Path("type") type: String
     ): List<UserApiModel>
-
 }
