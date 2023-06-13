@@ -1,12 +1,24 @@
 <h1 align="center">Github API Using Jetpack Compose</h1>
 
+<!-- Badges -->
+<p align="center">
+  <img src="https://img.shields.io/badge/Language-Kotlin-orange">
+  <img src="https://img.shields.io/badge/Platform-Android-brightgreen">
+  <img src="https://img.shields.io/badge/Architecture-MVVM-blueviolet">
+</p>
+
 ## Introduction 🙋‍♂️
 
 ### view pull request [develop -> master](https://github.com/Aks-4125/github-api-compose/pull/1)
 ### view Speer test on [develop/speer](https://github.com/Aks-4125/github-api-compose/tree/dev/speer-test) branch
 
 
+<!-- Project Description -->
+<p align="center">
 The Android project is built using Kotlin and follows the MVVM (Model-View-ViewModel) architectural pattern. It utilizes the latest AndroidX libraries, Jetpack components, and popular third-party libraries for different functionalities.
+</p>
+
+
 
 ## Features
 
@@ -96,4 +108,14 @@ This repository contains an Android project that utilizes the following librarie
 - [org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1](https://github.com/Kotlin/kotlinx.coroutines)
 
 Please refer to the individual library documentation for usage and more information.
+
+
+<!-- Contributing -->
+## Contributing
+Contributions to the project are welcome. If you find any issues or have suggestions for improvements, feel free to create a new issue or submit a pull request.
+
+<!-- License -->
+## License
+The project is licensed under the [MIT License](LICENSE).
+
 
