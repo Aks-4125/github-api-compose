@@ -2,9 +2,29 @@
 
 ## Introduction 🙋‍♂️
 
+# view pull request [develop -> master](https://github.com/Aks-4125/github-api-compose/pull/1)
+# view Speer test on [develop/speer](https://github.com/Aks-4125/github-api-compose/tree/dev/speer-test) branch
+
 Github open API using Android Kotin Jetpack Compose
 
-This code repository showcases a Kotlin project that serves as an example for Jetpack Compose, MVVM architecture, Coroutines, Hilt dependency injection, Room database, Coil image loading, Retrofit networking, Moshi JSON parsing, Leak Canary memory leak detection, and the Repository design pattern.
+
+The Android project is built using Kotlin and follows the MVVM (Model-View-ViewModel) architectural pattern. It utilizes the latest AndroidX libraries, Jetpack components, and popular third-party libraries for different functionalities.
+
+## Features
+
+The project includes the following features and components:
+
+- Integration of AndroidX Core, Lifecycle, and Activity Compose libraries for UI development and lifecycle management.
+- Usage of Compose UI library for building modern and reactive user interfaces.
+- Implementation of Hilt for dependency injection, facilitating easy and efficient dependency management.
+- Networking capabilities using Retrofit and OkHttp for making API requests and handling network operations.
+- Data parsing and serialization using Moshi JSON library.
+- Image loading and caching with Coil library.
+- Navigation between different screens using the Navigation Compose library.
+- Memory leak detection with LeakCanary library.
+- Implementation of a splash screen using the Core Splash Screen library.
+- Asynchronous programming using Kotlin Coroutines for efficient and non-blocking operations.
+- Unit testing and mocking with JUnit, MockK, and Kotlin Coroutines Test libraries.
 
 # Android Project Libraries
 
