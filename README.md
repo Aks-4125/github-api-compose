@@ -5,8 +5,6 @@
 ### view pull request [develop -> master](https://github.com/Aks-4125/github-api-compose/pull/1)
 ### view Speer test on [develop/speer](https://github.com/Aks-4125/github-api-compose/tree/dev/speer-test) branch
 
-Github open API using Android Kotin Jetpack Compose
-
 
 The Android project is built using Kotlin and follows the MVVM (Model-View-ViewModel) architectural pattern. It utilizes the latest AndroidX libraries, Jetpack components, and popular third-party libraries for different functionalities.
 
