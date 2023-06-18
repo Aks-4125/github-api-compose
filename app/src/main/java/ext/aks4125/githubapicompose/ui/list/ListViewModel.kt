@@ -32,7 +32,7 @@ class ListViewModel @Inject constructor(
     }
 
     private fun loadList(username: String?, shouldLoadFollowing: Boolean?) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             usersRepository.fetchList(
                 username ?: "",
                 if (shouldLoadFollowing == true) LIST_TYPE_FOLLOWING else LIST_TYPE_FOLLOWERS

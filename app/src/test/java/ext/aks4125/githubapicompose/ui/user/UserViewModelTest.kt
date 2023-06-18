@@ -1,17 +1,15 @@
 package ext.aks4125.githubapicompose.ui.user
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.SavedStateHandle
+import ext.aks4125.githubapicompose.Argument
 import ext.aks4125.githubapicompose.InstantExecutorExtension
 import ext.aks4125.githubapicompose.MainDispatcherRule
-import ext.aks4125.githubapicompose.network.UserApi
 import ext.aks4125.githubapicompose.network.model.UserApiModel
 import ext.aks4125.githubapicompose.repository.UsersRepository
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
-import io.mockk.every
+import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
-import io.mockk.spyk
 import io.mockk.unmockkAll
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -31,25 +29,19 @@ class UserViewModelTest {
     @get:Rule
     var coroutineTestRule = MainDispatcherRule()
 
-
+    @MockK
     private lateinit var repository: UsersRepository
 
-    @MockK
-    private lateinit var api: UserApi
-
-    @MockK
     private lateinit var savedStateHandle: SavedStateHandle
 
     private lateinit var userViewModel: UserViewModel
-
-    @Rule
-    @JvmField
-    val instantExecutorRule = InstantTaskExecutorRule()
 
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this, relaxUnitFun = true)
+        savedStateHandle = SavedStateHandle()
+        savedStateHandle[Argument.USERNAME] = "test_user1"
     }
 
     @After
@@ -58,35 +50,60 @@ class UserViewModelTest {
     }
 
     @Test
-    fun performSearch() {
-        runBlocking {
-            val model = UserApiModel(
-                userId = "akash",
-                id = 213,
-                avatarUrl = "",
-                followers = 12,
-                following = 11,
-                name = "Akash",
-                bio = "test bop",
-                nodeId = "test",
-                message = null
-            )
+    fun performSearch() = runBlocking {
+        val model = UserApiModel(
+            userId = "test_user1",
+            id = 213,
+            avatarUrl = "",
+            followers = 12,
+            following = 11,
+            name = "Test User",
+            bio = "test bot",
+            nodeId = "test",
+            message = null
+        )
 
-            repository = UsersRepository(usersApi = api)
-            every {
-                savedStateHandle.get<String>(any())
-            } returns ""
+        coEvery {
+            repository.fetchUser("test_user1")
+        } coAnswers { model }
 
-            coEvery {
-                repository.fetchUser("akash")
-            } coAnswers {
-                model
-            }
+        userViewModel = UserViewModel(repository, savedStateHandle)
 
-            userViewModel = UserViewModel(repository, savedStateHandle)
+        Assert.assertNotNull(userViewModel.uiState)
 
-            Assert.assertNotNull(userViewModel.uiState)
-            Assert.assertNotNull(userViewModel.uiState.notFound)
+        Assert.assertFalse(userViewModel.uiState.notFound)
+        Assert.assertEquals(userViewModel.uiState.user?.userId, "test_user1")
+
+        coVerify(exactly = 1) {
+            repository.fetchUser(any())
         }
     }
+
+    @Test
+    fun nullUserTest() = runBlocking {
+        coEvery {
+            repository.fetchUser("test_user1")
+        } coAnswers {
+            UserApiModel(
+                userId = "undefined_user",
+                id = 0,
+                avatarUrl = "",
+                followers = 0,
+                following = 0,
+                name = null,
+                bio = null,
+                nodeId = null,
+                message = "user not found"
+            )
+        }
+        userViewModel = UserViewModel(repository, savedStateHandle)
+
+        Assert.assertTrue(userViewModel.uiState.notFound)
+
+        coVerify(exactly = 1) {
+            repository.fetchUser(any())
+        }
+
+    }
+
 }

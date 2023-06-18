@@ -19,6 +19,6 @@ class MainDispatcherRule constructor(
     }
 
     override fun finished(description: Description) {
-        Dispatchers.resetMain()
+         Dispatchers.resetMain()
     }
 }

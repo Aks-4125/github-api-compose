@@ -13,5 +13,5 @@ data class UserApiModel(
     @field:Json(name = "bio") var bio: String? = null,
     @field:Json(name = "followers") var followers: Int?,
     @field:Json(name = "following") var following: Int?,
-    @field:Json(name = "message") val message: String?
+        @field:Json(name = "message") val message: String?
 )

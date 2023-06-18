@@ -35,14 +35,9 @@ class UserViewModel @Inject constructor(
     }
 
     fun performSearch(it: String) {
-        viewModelScope.launch(Dispatchers.IO + CoroutineExceptionHandler { _, throwable ->
-            throwable.printStackTrace()
-            uiState = uiState.copy(notFound = true)
-        }) {
+        viewModelScope.launch {
             usersRepository.fetchUser(it).let { data ->
-                withContext(Dispatchers.Main) {
                     uiState = if (data.message != null) {
-                        // no user
                         uiState.copy(notFound = true)
                     } else {
                         uiState.copy(
@@ -50,7 +45,6 @@ class UserViewModel @Inject constructor(
                             notFound = false,
                         )
                     }
-                }
             }
         }
     }
